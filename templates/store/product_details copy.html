@@ -19,8 +19,7 @@
             </aside>
             <main class="col-md-6 border-left">
 
-            <form action="{% url 'add_cart' single_product.id %}" method='POST'>
-                {% csrf_token %}
+            <form action="{% url 'add_cart' single_product.id %}" method='GET'>
                   <article class="content-body">
                   
                   <h2 class="title">{{single_product.product_name}}</h2>
@@ -38,8 +37,8 @@
                               <h6>Choose Color</h6>
                               <select name="color" class='form-control' required>
                                 <option value="" disabled selected> Color</option>
-                                {% for i in single_product.variation_set.colors  %}
-                                <option value="{{ i.variation_value | lower  }}">{{ i.variation_value |capfirst }}</option>
+                                {% for i in single_product.variation_set.all  %}
+                                <option value="{{ i.variation_value }}">{{ i.variation_value }}</option>
                                 {% endfor %}
                               </select>
                           </div>
@@ -47,20 +46,25 @@
                       <div class="row">
                           <div class="item-option-select">
                               <h6>Select Size</h6>
-                              <select name="size" class='form-control' required>
-                                <option value="" disabled selected> Size</option>
-                                {% for i in single_product.variation_set.sizes  %}
-                                <option value="{{ i.variation_value | lower }}">{{ i.variation_value |capfirst }}</option>
-                                {% endfor %}
-                              </select>
+                              <select name="size" class='form-control'>
+                                <option value="small">S</option>
+                                <option value="medium">M</option>
+                                <option value="large">L</option>
+                              </select> 
                           </div>
                       </div> <!-- row.// -->
                       <hr class='border border-info'>
                       {% if single_product.stock <= 0 %}
                           <h4 class = 'border border-info w-50 text-center text-white bg-danger'>Out of Stock</h4>
                       {% else %}
-                        
-                          <button type='submit' class="btn  btn-info"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
+                        {% if in_cart %}
+                        <a href="" class="btn  btn-info"> <span class="text">Added to Cart</span> <i class="fas fa-check"></i>  </a>
+                        <a href="{% url 'add_cart' single_product.id %}" class="btn  btn-outline-info"> <span class="text">View Cart</span> <i class="fas fa-eye"></i>  </a>
+                        {% else %}
+                          <buttons type='submit' class="btn  btn-info"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </buttons>
+                        {% endif %}
+                      
+                      
                       {% endif %}
                   </article> <!-- product-info-aside .// -->
 
