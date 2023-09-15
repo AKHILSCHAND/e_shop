@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from accounts_app.forms import RegistrationForm
 from accounts_app.models import Account
 
+import requests
 # Verification email
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -71,7 +72,7 @@ def log_in(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'you are logged in.')
-            return redirect ('home')
+            return redirect ('dashboard')
         else:
             messages.error(request, 'invalid login credentials')
             return redirect ('log_in')
@@ -104,3 +105,19 @@ def log_out(request):
 #     else:
 #         messages.error(request, 'Invalid activation link')
 #         return redirect('register')
+
+
+
+
+# @login_required(login_url = 'login')
+def dashboard(request):
+#     orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id, is_ordered=True)
+#     orders_count = orders.count()
+
+#     userprofile = UserProfile.objects.get(user_id=request.user.id)
+#     context = {
+#         'orders_count': orders_count,
+#         'userprofile': userprofile,
+#     }
+#     return render(request, 'account/dashboard.html', context)
+    return render(request, 'account/dashboard.html')

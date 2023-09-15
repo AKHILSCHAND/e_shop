@@ -5,7 +5,7 @@
 <!-- =========== carousel slide ================== -->
 <section class="section-intro padding-y-sm">
     <div class="container">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="d-block w-100 " style=' height:300px;' src="{% static 'images\banners\22.jpg' %}" alt="First slide">
@@ -46,7 +46,7 @@
                     <a href="{{product.get_url}}" class="img-wrap"> <img src="{{product.product_image.url}}"> </a>
                     <figcaption class="info-wrap">
                         <a href="{{product.get_url}}" class="title">{{product.product_name}}</a>
-                        <div class="price mt-1">Rs.{{product.price}}</div> <!-- price-wrap.// -->
+                        <div class="price mt-1">$.{{product.price}}</div> <!-- price-wrap.// -->
                     </figcaption>
                 </div>
             </div> <!-- col.// -->

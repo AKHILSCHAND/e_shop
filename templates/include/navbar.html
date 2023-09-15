@@ -1,4 +1,4 @@
-<header class="section-header bg-light " >
+<header class="section-header bg-light "  >
     <section class="header-main border border-info rounded">
         <div class="container">
             <div class="row align-items-center justify-content-around">
@@ -20,7 +20,7 @@
                         <div class="widget-header">
                             <small class="title text-muted">Welcome {{user.first_name}}!</small>
                             <div> 
-                                <a href="#">Dashboard</a> <span class="dark-transp"> | </span>
+                                <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
                                 <a href="{% url 'log_out' %}"> LogOut</a>
                             </div>
                         </div>

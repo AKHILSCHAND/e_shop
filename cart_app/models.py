@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+from eshop import settings
+
 
 
 from product_app.models import Product, Variation
@@ -8,6 +11,7 @@ from product_app.models import Product, Variation
 class Cart(models.Model):
     cart_id    = models.CharField( max_length=200, blank=True)
     date_added = models.DateField( auto_now_add=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
     
     def __str__(self):
@@ -20,6 +24,7 @@ class CartItem(models.Model):
     cart     = models.ForeignKey(Cart,  on_delete=models.CASCADE)
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
+
     
     def sub_total(self):
         return self.product.price * self.quantity
